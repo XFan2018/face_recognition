@@ -1,0 +1,6 @@
+1. Build face recognition dataset
+    1. Access webcam
+    2. Detect face
+    3. Write the frame containing the face to disk
+    run build_face_dataset in terminal with the following command:
+        python build_face_dataset.py -c /Users/leo/opt/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml -o faceDataset

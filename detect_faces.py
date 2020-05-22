@@ -4,19 +4,6 @@ import cv2
 import torch
 import matplotlib.pyplot as plt
 
-confidence_threshold = 0.8
-
-prototxt = '/model/deploy.prototxt.txt'
-caffemodel = '/model/res10_300x300_ssd_iter_140000.caffemodel'
-
-base_dir = os.path.dirname(__file__)
-prototxt = os.path.join(base_dir + prototxt)
-caffemodel = os.path.join(base_dir + caffemodel)
-if not os.path.exists("detected_face"):
-    print("create new dir")
-    os.mkdir("detected_face")
-dataset = os.listdir(base_dir + "/faceDataset")
-
 
 def get_model(prototxt_dir, caffemodel_dir):
     """
@@ -28,21 +15,22 @@ def get_model(prototxt_dir, caffemodel_dir):
     return model
 
 
-def detect_faces(dataset_dir, prototxt_dir, caffemodel_dir, confidenceThreshold=0.5):
+def detect_faces(dataset_path, dataset_dir_list, prototxt_dir, caffemodel_dir, confidence_threshold=0.5):
     """
-    :param dataset_dir:         dataset path
+    :param dataset_path         dataset path
+    :param dataset_dir_list:         dataset file list
     :param prototxt_dir:        prototxt path
     :param caffemodel_dir:      caffemodel path
-    :param confidenceThreshold: confidence threshold
+    :param confidence_threshold: confidence threshold
     :return:                    list of extracted faces
     """
     model = get_model(prototxt_dir, caffemodel_dir)
     result = []
-    for file in sorted(dataset_dir):
+    for file in sorted(dataset_dir_list):
         file_name, file_extension = os.path.splitext(file)
         if file_extension == ".png":
             print(file)
-        img = cv2.imread(base_dir + "/faceDataset/" + file)
+        img = cv2.imread(dataset_path + "/" + file)
         (h, w) = img.shape[:2]
         blob = cv2.dnn.blobFromImage(cv2.resize(img, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
         model.setInput(blob)
@@ -65,13 +53,11 @@ def detect_faces(dataset_dir, prototxt_dir, caffemodel_dir, confidenceThreshold=
                 (fh, fw) = faceROI.shape[:2]
                 cv2.rectangle(img, (leftBottom, rightBottom), (leftTop, rightTop), (255, 0, 0), 2)
                 cv2.putText(img, text, (leftBottom, rightBottom), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
-        faceblob = cv2.dnn.blobFromImage(faceROI, 1.0 / 255, (112, 112), (0,0,0), swapRB=True, crop=False)
-        faceblob = faceblob.squeeze(0)
+        faceblob = cv2.dnn.blobFromImage(faceROI, 1.0 / 255, (112, 112), (0, 0, 0), swapRB=True, crop=False)
         faceblob = torch.from_numpy(faceblob)
         result.append(faceblob)
         print(faceblob.shape)
+    result = tuple(result)
+    result = torch.cat(result, 0)
     print("result length: ", len(result))
     return result
-
-
-detect_faces(dataset, prototxt, caffemodel, 0.9)

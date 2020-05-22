@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02c7404c-2db7-4a48-8302-019b8b1aee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/detect_faces.py" beforeDir="false" afterPath="$PROJECT_DIR$/detect_faces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/faceNetModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/faceNetModel.py" afterDir="false" />
-    </list>
+    <list default="true" id="02c7404c-2db7-4a48-8302-019b8b1aee47" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,10 +278,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28184712" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28184712" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" weight="0.32984293" />
@@ -292,7 +288,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28481674" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28481674" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
